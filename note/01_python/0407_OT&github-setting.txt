@@ -1,0 +1,33 @@
+0407_수업 노트
+
+[향후 커리큘럼 소개]
+
+1. 파이썬 기반 데이터분석 및 시각화 5.5 주
+2. 웹표준 UI(HTML , CSS , JavaScript, jQuery ) 2 주
+3. 인공지능 모델링 딥러닝과 자연어처리 1.5 주
+4. OpenAI API 를 활용한 생성형 AI 2 주
+5. DBMS(Oracle, MySQL) 기본 1 주
+6. Flask 및 dJango 파이썬 웹 개발 프레임워크 ) 2 주
+7. 머신러닝 회귀분석 제외 1 주
+8. 프로젝트 총 3 차 ) 5 주
+
++ 추가 커리큘럼은 심화과정 324시간..
+들을지 말지는 추후 결정해보자
+
+[프로그래밍 언어]
+사람과 컴퓨터가 소통하고 작업하기 위한 언어
+(저급) 기계어, 어셈블리어 / (고급) 파이썬, 자바, C언어..
+
+
+[깃허브 사용 방법]
+1. git-scm 설치 (cmd에서 git 명령어 사용가능)
+2. git bash에서 환경설정
+ > git config --global user.name "내아이디"
+ > git config --global user.email "내메일주소"
+3. git 파일 올리기
+ > git add.
+ > git commit -m "버전명"
+ > git push -u origin main
+4. git hub 동기화
+ > (최초 집에 세팅) git clone https://github.com/jsa3338/AI-X.git
+ > (git>PC 싱크) git pull origin main

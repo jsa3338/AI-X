@@ -1,0 +1,116 @@
+import tkinter as tk
+import random
+
+# 플레이어 정보
+player = {
+    "이름": "용사",
+    "체력": 100,
+    "공격력": 20,
+    "회복약": 3,
+    "레벨": 1,
+    "경험치": 0
+}
+
+# 몬스터 생성 함수
+def spawn_monster():
+    return {
+        "이름": random.choice(["고블린", "슬라임", "해골 전사"]),
+        "체력": random.randint(30, 60),
+        "공격력": random.randint(5, 15)
+    }
+
+# 몬스터 초기화
+monster = spawn_monster()
+
+# 공격 버튼 동작
+def attack():
+    global monster
+    damage = random.randint(10, player["공격력"])
+    monster["체력"] -= damage
+    log(f"{monster['이름']}에게 {damage}의 피해를 입힘!")
+
+    if monster["체력"] > 0:
+        monster_attack()
+    else:
+        log(f"{monster['이름']}을(를) 처치했습니다!")
+        exp = random.randint(10, 25)
+        player["경험치"] += exp
+        log(f"경험치 {exp} 획득!")
+        if player["경험치"] >= 50:
+            player["레벨"] += 1
+            player["공격력"] += 5
+            player["체력"] = 100
+            player["경험치"] = 0
+            log(f"레벨업! 현재 레벨: {player['레벨']}")
+        monster = spawn_monster()
+        log(f"{monster['이름']}이(가) 나타났습니다!")
+    update_status()
+
+# 회복 버튼 동작
+def heal():
+    if player["회복약"] > 0:
+        player["체력"] += 30
+        player["회복약"] -= 1
+        log("체력을 30 회복했습니다!")
+    else:
+        log("회복약이 없습니다!")
+    monster_attack()
+    update_status()
+
+# 도망 버튼 동작
+def run():
+    global monster
+    log("도망쳤습니다!")
+    monster = spawn_monster()
+    log(f"{monster['이름']}이(가) 나타났습니다!")
+    update_status()
+
+# 몬스터 반격
+def monster_attack():
+    damage = random.randint(5, monster["공격력"])
+    player["체력"] -= damage
+    log(f"{monster['이름']}의 공격! {damage} 피해를 입었습니다.")
+    if player["체력"] <= 0:
+        log("게임 오버! 당신은 쓰러졌습니다.")
+        disable_buttons()
+
+# 로그 출력
+def log(message):
+    text_log.insert(tk.END, message + "\n")
+    text_log.see(tk.END)
+
+# 상태 업데이트
+def update_status():
+    lbl_status.config(text=f"👤 {player['이름']} | 체력: {player['체력']} | 레벨: {player['레벨']} | 회복약: {player['회복약']}\n"
+                           f"👾 {monster['이름']} | 체력: {monster['체력']}")
+    
+# 버튼 비활성화
+def disable_buttons():
+    btn_attack.config(state=tk.DISABLED)
+    btn_heal.config(state=tk.DISABLED)
+    btn_run.config(state=tk.DISABLED)
+
+# GUI 만들기
+window = tk.Tk()
+window.title("파이썬 RPG 게임")
+window.geometry("400x500")
+
+lbl_status = tk.Label(window, text="", justify="left")
+lbl_status.pack(pady=10)
+
+btn_attack = tk.Button(window, text="⚔️ 공격", command=attack, width=20)
+btn_attack.pack(pady=5)
+
+btn_heal = tk.Button(window, text="🧪 회복", command=heal, width=20)
+btn_heal.pack(pady=5)
+
+btn_run = tk.Button(window, text="🏃 도망", command=run, width=20)
+btn_run.pack(pady=5)
+
+text_log = tk.Text(window, height=20)
+text_log.pack(pady=10)
+
+log(f"{monster['이름']}이(가) 나타났습니다!")
+update_status()
+
+window.mainloop()

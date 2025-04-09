@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 1,
    "id": "757e26e6",
    "metadata": {},
    "outputs": [
@@ -513,21 +513,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": null,
    "id": "b9a36f4c",
    "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "9223372036854775807"
-      ]
-     },
-     "execution_count": 2,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
+   "outputs": [],
    "source": [
     "import sys\n",
     "sys.maxsize # 정수의 최대값 (2**63 -1)"
@@ -535,19 +524,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "id": "d0e8e631",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "9223372037854775806\n",
-      "<class 'int'>\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "i = sys.maxsize +999999999 # 정수 최대값을 초과할 수 있다. 즉, 숫자 한계가 없다\n",
     "print(i)\n",
@@ -556,18 +536,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": null,
    "id": "7301c028",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "1.5 2.0\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "f1 = 3/2 # 정수/정수는 무조건 실수\n",
     "f2 = 4/2 \n",
@@ -641,28 +613,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": null,
    "id": "24d113d3",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "여러줄짜리 내용\n",
-      "줄바꿈 문자를 쓰지 않고\n",
-      "따옴표 3개로 처리한다\n",
-      "이처럼 쓰는 경우가 많아요 \n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# 문자형 변수에 여러줄\n",
-    "text = '''\\\n",
-    "여러줄짜리 내용\n",
+    "text = '''여러줄짜리 내용\n",
     "줄바꿈 문자를 쓰지 않고\n",
     "따옴표 3개로 처리한다\n",
-    "이처럼 쓰는 경우가 많아요 \\\n",
+    "이처럼 쓰는 경우가 많아요\n",
     "'''\n",
     "\n",
     "print(text)"
@@ -1467,7 +1427,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 197,
    "id": "7c7ef5a2",
    "metadata": {},
    "outputs": [
@@ -1493,7 +1453,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 215,
    "id": "3705d9f0",
    "metadata": {},
    "outputs": [
@@ -1512,7 +1472,7 @@
     "f = 2.758\n",
     "s = 'Hello'\n",
     "print(\"f = [{:$>5.2f}]\".format(f))\n",
-    "print('s = [{:_<5.2s}]'.format(s))"
+    "print('s = [{:_<5.2}]'.format(s))"
    ]
   },
   {
@@ -1562,7 +1522,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 238,
    "id": "f936af7d",
    "metadata": {},
    "outputs": [
@@ -1570,8 +1530,8 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[    +2.758]\n",
-      "[    +2.758]\n"
+      "[    +2.785]\n",
+      "[    +2.785]\n"
      ]
     }
    ],
@@ -1725,7 +1685,7 @@
     "height": "calc(100% - 180px)",
     "left": "10px",
     "top": "150px",
-    "width": "233.594px"
+    "width": "233.6px"
    },
    "toc_section_display": true,
    "toc_window_display": true

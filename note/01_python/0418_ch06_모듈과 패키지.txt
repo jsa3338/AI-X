@@ -1,0 +1,20 @@
+6장. 모듈과 패키지
+
+1절. 파이썬 모듈 사용하기
+	import A : A모듈을 load
+	import A : A 패키지 밑의 __init__모듈을 load
+	from A import B : 
+		1) A패키지 안의 B모듈 load
+		2) A모듈안의 B함수를 load
+	from A.b import C : A패키지 밑의 B모듈안의 C함수를 load
+	import A as L : A모듈을 L이름으로 로드
+
+2절. 패키지 설치 및 삭제
+	pip install 패키지명[==버전] / conda install 패키지명[==버전]
+	pip show 패키지명  / conda list 패키지명
+	pip uninstall 패키지명  / conda remove 패키지명
+
+	* 패키지 아래 __init__.py 에 패키지 설정 내용이 추가 * 
+	ex) 시작과 함께 구동, 일반적으로 환경설정 등을 넣음
+
+

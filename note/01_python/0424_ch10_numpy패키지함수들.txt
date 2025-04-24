@@ -1,0 +1,51 @@
+10장. N차원 배열 다루기
+ - 그 중 numpy 패키지의 많은 함수들을 활용하므로 집중해서 보자
+ - 배열은 반드시 동일 자료형의 집합이다
+
+Numpy 패키지 함수와 속성
+
+배열속성
+ dtype : 요소들의 type
+ itemsize : 한 요소의 byte 사이즈
+ ndim : 차원수(축수)
+ size : 배열 요소의 (총)개수
+ shape : 배열 구조 # ex. (2, 3)  2행 3열
+
+- 배열 생성 함수 np.
+  np.array(obj, dtype, copy=T) 
+  np.array(obj, dtype, copy=T).reshape(구조) 
+	# obj -> 리스트, 튜플, 배열
+  np.ones(tup,dtype)
+  np.zeros(tup,dtype)
+  np.full(tup, 기본값)
+  np.empty(tup, dtype)
+  np.random.random(tup) : 0~1미만 균등분포된 랜덤값
+  np.random.uinform(low=0, high=1.0, size=tup) : low~high미만 균등분포된 랜덤값
+  np.random.normal(loc=0, scale=1.0, size=tup) : 평균loc, 표준편차scale의 정규분포를 갖는 랜덤값
+  np.random.rand(n) : n개의 균등분포의 1차원 랜덤값 배열
+  np.random.randn(n) : n개의 표준정규분포의 1차원 랜덤값 배열
+  np.linspace(from, to, count, dtype) : from 부터 to(포함)까지 count개 1차원 배열
+  np.arange(from, stop, step) : from부터 stop앞까지 step 증감하는 1차원 배열
+
+- 배열 차원 변경
+ reshape()
+ ravel(), flatten() : 1차원 변경
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+11장 데이터프레임
+
+8절. 기초 통계 분석
+	- pandas : 기초 통계 / statsmodels : 난이도 있는 통계
+	- 변수간 상관분석, 요인분석
+	- count : NaN을 제외한 갯수
+	- min, max, sum
+	- cumsum : 누적 합
+	- cumprod : 누적 곱
+	- mean
+	- rolling(n).mean() : 데이터 변동(노이즈) 다소 있을 때, 추세(패턴)을 부드럽게 보고 싶을 때
+	- median : 중위수
+	- qunantile : 분위수 - 0사분위수(0%), 1사분위수(25%), 2사분위수(50%), 3사분위수(75%), 4사분위수(100%)
+	    * 이상치를 구할 때 사용   
+	    * max(Q4), Q3, Q2, Q1, min(Q0)
+	    * IQR = Q3-Q1
+	    * 이상치의 기준은 Q1-1.5*IQR ~ Q3+1.5*IQR 이 범위를 벗어나는 값
+	- describe : 요약 통계량 
+	- corr : 변수와 변수 간의 상관관계(계수)
+
+9절. 데이터 그룹화 및 집계
+	df.groupby(by=[그룹핑할열])[출력할 열].기초통계함수()   # [출력할 열]을 생략하면 모든열 출력
+     <예시>
+	iris.groupby(by=['Species', 'num'])[['Petal.Length', 'Petal.Width']].count()
+	iris.pivot_table(index=['Species', 'num'],
+                 values=['Petal.Length', 'Petal.Width'],
+                 aggfunc='count'
+                )
+	* 레이블 인코딩 : 문자열을 숫자 코드를 매칭해줘서 라벨링을 해주는 작업
+	      # 레이블 인코딩을 지원하는 클래스 불러오기
+		from sklearn.preprocessing import LabelEncoder  # LabelEncoder 왜 대문자? 클래스인 걸 짐작할수 있다
+		le = LabelEncoder()  # 객체 생성
+		iris['target'] = le.fit_transform(iris.Species) # Species 열을 학습하여 숫자로 값을 변경해줌
+
+10절. 데이터 구조 변경
+	- melt()를 이용한 언피버팅(와이드포맷->롱포맷)
+	    df.melt(id_vars=[기준열], var_name='변수명', value_name='값')
+	- pivot_table()을 이용한 피벗팅(롱포맷->와이드포맷)
+	    df.pivot_table(index=[기준열], columns='변수명', values = '값')
+
+11절. 데이터프레임(시리즈)에 함수 적용하기
+	- apply(func, axis) : 축 요소별(요소별) 함수 적용 (데이터프레임, 시리즈에서 사용 가능)
+	- applymap(func) : 각 요소별 함수 적용 (데이터프레임에서만 사용 가능)
+	- map(func, lis) : 각 요소별 함수 적용 (1차원 리스트, 시리즈에서만 가능)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

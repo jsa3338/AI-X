@@ -1,0 +1,19 @@
+11장 데이터프레임
+
+12절. 일괄변경하기(결측치, 특정값)
+   < fillna() >
+	df.fillna(values=교체할값, method =교체방법, limit=교체수제한)
+        	  # ex. 결측치를 2번째 결측치까지만 모두 대체
+	  df.fillna(value= df.median(axis=0), method =None, limit=2)
+   < replace() >
+	replace(to_value, new_value, inplae=T/F, regex=T/F)
+        	  # ex. to_value에 정규표현식 가끔 사용
+   < where(), mask() >
+	where(조건) : 조건이 True인 요소만 출력하고, 그 외 요소는 결측치로 출력
+	mask(조건) : 조건이 False인 요소만 출력하고, 그 외 요소는 결측치로 출력
+  < dropna() >	
+	df.dropna(*, how='any'/'all', axis=0, subset=결측치가 있는지 검색할 칼럼) 
+
+13절. 시리즈
+	데이터프레임에서 떼어낸 열 데이터는 시리즈로 표현. data, index, name 의 속성을 지님
+	to_frame() 함수를 통해 데이터프레임으로 변경 가능

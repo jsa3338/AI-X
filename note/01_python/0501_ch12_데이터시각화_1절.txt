@@ -1,0 +1,47 @@
+12장 데이터시각화
+
+- 시각화 라이브러리 : matplotlib, seaborn(데이터시각화), folium(지도시각화)
+    * matplotlib : 파이썬에서 가장 쉽게 많이 사용하는 시각화 라이브러리. 판다스 내부에 포함
+    * seaborn : matplotlib 기반으로 다양한 색상, 테마, 차트 기능, groupby 기능 포함
+
+1절. matplotlib
+ 	참고 : https://matplotlib.org/stable/api/index.html
+  <기본설정>
+	import matplotlib.pyplot as plt
+	%config InlineBackend.figure_format='retina'  # 그래프를 더 높은 해상도로 그려줌 
+	plt.rc('font', family='Malgun Gothic') #한글설정
+	import warnings
+	warnings.filterwarnings(action='ignore')  # 경고 메세지 안보이게
+  <그래프 그리기>
+	데이터준비 - 그래프생성(레이아웃, 종류, 사이즈 등) - 함수로 그리기 - 커스터마이징 - 출력 혹은 저장
+	plt.plot() : 선그래프, plt.scatter() : 산점도, boxplot() : 박스플롯, violinplot() : 바이올린플롯
+	hist() - 도수분포표;histogram
+	그외 bar(), barh(), axvline(수직선), axhline(수평선)	
+  <그래프영역 나누기>
+       - subplot() 
+	plt.subplot(2,1,1);plt.plot(x, np.sin(x))   # 그래프를 2행 1열로 그렸을때 1번에 위치
+	plt.subplot(2,2,3);plt.plot(x, np.cos(x))   # 그래프를 2행 2열로 그렸을때 3번에 위치
+	plt.subplot(2,2,4);plt.plot(x, np.sin(x)*np.cos(x))  # 그래프를 2행 2열로 그렸을때 4번에 위치
+       - subplots() 
+	fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(7,4))  # 2행 2열 서브플롯
+	axes[0,0].plot(x, np.sin(x), 'r', linewidth=10)
+	axes[0,1].plot(x, np.cos(x), color = 'c', linestyle='--') # linestyle=':'(점선), '--'(긴점선), '-'(실선)
+	axes[1,0].plot([0,1,2,3], [-1, -0.5, 0, 0.5], 'ro:') #  'ro:'   # == color : r, marker : 'o', linestyle : ':'
+	axes[1,0].plot(x, np.tanh(x), '#00ff00')  # color : #00ff00
+	axes[1,1].plot(x, np.sin(x), 'r-.')  # 'r-.' == color : r, linestyle : '-.'
+       - pandas.DataFrame.plot()
+	cf ) plt.plot(x, y, fmt)
+	df.plot(x=열이름, y=열이름, kind = 'line', figsize, title, xlim, ylim...)
+	    * kind : line(기본값), scatter, bar(바), barh(가로바), box, pie, density, hist,...
+	    * xlim, ylim : 좌표들. list/tuple
+
+※ 범례사용 참고 : https://stackoverflow.com/questions/30490740/move-legend-outside-figure-in-seaborn-tsplot
+
+<그래프 커스터마이징>
+	참고 : 
+	   https://matplotlib.org/stable/api/axes_api.html#text-and-annotations
+	   https://matplotlib.org/2.0.2/users/mathtext.html
+	매개변수로 지정되는 것들 : linestyle, linewidth, color, marker...
+
+
+

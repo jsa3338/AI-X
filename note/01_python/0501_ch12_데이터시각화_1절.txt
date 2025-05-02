@@ -41,7 +41,35 @@
 	참고 : 
 	   https://matplotlib.org/stable/api/axes_api.html#text-and-annotations
 	   https://matplotlib.org/2.0.2/users/mathtext.html
-	매개변수로 지정되는 것들 : linestyle, linewidth, color, marker...
+ 1. 매개변수로 지정되는 것들 : linestyle, linewidth, color, marker...
+
+      # 개별 폰트 설정을 위한 방법
+	from matplotlib.font_manager import FontProperties  # 폰트 속성 개체
+	font_path = r'font/MaruBuri-Bold.ttf'  # 폰트파일과 경로설정 (네이버 폰트, 구글 폰트 등에서 다운로드)
+	font_prop = FontProperties(fname=font_path, size=20)  # 폰트 속성 개체 생성
+     # 한글 폰트 설정, 폰트 설정 방법
+	plt.rc('font', family='Malgun Gothic')
+	plt.rc('axes', unicode_minus=False)      # 축의 - 깨짐 방지
+
+ 2. text(), annotate() - 그래프 안에 글자 입력, 특정 포인트에 화살표
+	그래프객체.text( x좌표, y좌표, '입력텍스트', style=' ', fontsize= )
+	그래프객체.annotate( '입력텍스트', xytext=(x좌표, y좌표),  # xytext=글자를 넣을 좌표(좌하) 
+			xy=(x좌표, y좌표),                          	# xy=화살표가 가르킬 위치
+			arrowprops=dict(arrowstyle='->',
+                                		          connectionstyle='arc')  # angle(꺾은선), arc(직선)..
+			)
+ 3. 축과 눈금 조정
+	set() , set_xlim(), set_ylim(), set_xlabel(), set_ylabel(), set_visible(T/F), grid(T/F)
+ 4. 축공유
+	ax2 = ax1.twinx()   # ax1과 x축을 공유하는 ax2 / x축 데이터를 서로 같게, ylabel을 추가 설정해줘야한다 
+	ax3 = ax1.twiny()   # ax1과 y축을 공유하는 ax3 / y축 데이터를 서로 같게, xlabel을 추가 설정해줘야한다 
+ 5. 범례 표시
+	plt.legend(loc='center right', ncol=2) # bbox_to_anchor=(0.1,1)와 같이 위치 지정 가능
+	* 참고 : https://stackoverflow.com/questions/30490740/move-legend-outside-figure-in-seaborn-tsplot (교안20page)
+ 6. 플롯 스타일 지정 
+	plt.style.use('ggplot')
+	
+
 
 
 

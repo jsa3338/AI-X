@@ -53,8 +53,7 @@ def to_customer(row):
     return Customer(name, phone, email, age, grade, etc)
 
 # 0.실행하면 data/ch09_customers.txt 파일의 내용을 load(customer_list)
-# data/ch09_customers.txt 이 존재하지 않으면
-#빈 data/ch09_customers.txt 파일을 생성하고
+# data/ch09_customers.txt 이 존재하지 않으면 빈 data/ch09_customers.txt 파일을 생성하고
 #데이터는 customer_list=[]
 
 def load_customers():

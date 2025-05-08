@@ -1,0 +1,28 @@
+13장. 종합예제 2
+
+1. 시각화를 하기 위한 밑 준비
+   # 필요한 라이브러리 호출
+	import pandas as pd
+	import numpy as np
+	import seaborn as sns
+	import matplotlib.pyplot as plt
+   # 화면 선명도
+	%config InlineBackend.figure_format = 'retina'
+   # seaborn 스타일 세팅 - 해당 세팅시 이전 세팅이 모두 날아가므로 주의
+	sns.set(style = 'white', rc=dict(figure.figsize = (15,3))
+   # 한글 폰트 적용
+	plt.rc('font', family = 'Malgun Gothic'
+	plt.rc('axes', unicode_minus=False)
+
+2. 데이터 준비 및 전처리 과정 요약
+	1) https://www.data.go.kr> “상가(상권)정보” > 서울과 부산데이터 추출(pd.read_csv())
+	2) 각 df를 할당주고, 각 컬럼명이 동일한지 확인 후 pd.concat(), df.reset_index(drop=True)
+	 * misingno 라이브러리를 이용하여 결측치 시각화 가능
+	3) 결측치가 있는 열과 행을 체크(결측치 데이터 수, 결측치가 없는 데이터 수 등)
+	 * plot.bar() or plot(kind='bar) or sns.barplot()..
+	4) 결측치가 너무 많은 컬럼, 분석에 불필요한 컬럼 제거
+	  * df.columns.str.contain('찾을문자열1|찾을문자열2') : 컬럼명에 특정 문자열이 포함된 것들을 찾아줌
+		** find('찾을문자열') != -1 이것을 이용할수 있지만 여러개 일때는 위가 편리
+	5) 전처리 완료 파일 백업
+	
+	

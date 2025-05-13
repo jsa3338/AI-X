@@ -1,0 +1,16 @@
+ch01. VisualStudio : “Visual Studio 확장 개발”, “.NET 데스크톱 개발” 추가 설치,
+		iisexpress_amd64_ko-KR.msi 인스톨 
+
+ch02
+글자관련 태그 : h1~h6 제목태그, p 단락, del 취소선, i 이태릭체, b 굵게, strong 굵게
+	ins 밑줄, pre 여러줄캡션, a 앵커
+목록태그	: ul-li, ol-li
+표	: table - tr - td/th
+이미지태그 : img의 src 속성, alt 속성
+오디오 태그
+
+ch03
+form태그 : form - 다양한 type:text, pasword, tel, number, file, date, hidden, submit, button
+block형 태그 vs inline형 태그
+(* inline형 태그 - br을 하지 않으면 아래줄로 안감)
+공간분할태그

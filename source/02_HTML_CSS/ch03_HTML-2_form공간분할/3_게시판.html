@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>게시판</title>
+    <style>
+        table{border-collapse:collapse;}
+        tr {
+            border-top: 1px solid green;
+            border-bottom: 1px solid green;
+        }
+        th, td{
+            background-color:white;
+            padding: 5px 10px
+        }
+    </style>
+    <script>  /* 자바스크립트 섹션 */
+        function chk() {
+            // submit 이 안일어나는 조건이면 일어나지마 : name.value.length < 2, title.value가 빈스트링
+            if (!frm.title.value) {
+                alert('제목은 필수 입력 사항입니다');
+                frm.title.focus();
+                return false;  // 이벤트 제한
+            }else if (frm.name.value.length < 2) {
+                alert('작성자 명은 2글자 이상입니다');
+                frm.name.focus();
+                return false;  // submit 이벤트를 제한
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <form onsubmit="return chk()" name="frm">  <!-- onsubmit은 submit을 실행할때 ~해 라는 함수를 넣는다-->
+        <table>
+            <caption><h2>게시판</h2></caption>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title" /></td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>본문</td>
+                <td><textarea name="content" rows="5" cols="20"></textarea></td>
+            </tr>
+            <tr>
+                <td>첨부파일</td>
+                <td><input type="file" name="filename"</td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="submit" name="submit" />
+                    <input type="reset" name="reset"
+                </th>
+            </tr>
+        </table>
+    </form>
+    <table border="1" style="border-collapse: separate;">
+        <tr><td>1</td><td>2</td></tr>
+    </table>
+    <table border="1" style="border-collapse: collapse;">
+        <tr><td>1</td><td>2</td></tr>
+    </table>
+
+
+</body>
+</html>

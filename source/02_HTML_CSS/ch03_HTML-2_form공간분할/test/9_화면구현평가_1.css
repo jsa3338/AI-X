@@ -1,0 +1,16 @@
+﻿/* 9_화면구현평가_1.css */
+td {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+header, footer {
+    text-align: center;
+    margin: 5px;
+}
+
+section {
+    border-bottom: 1px solid gray;
+    margin: 5px;
+    padding: 10px;
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>1_태그 선택자_CSS를 입혀보자</title>
+    <style> /* CSS는 위에서부터 아래로 차례차례 적용*/        
+        body{
+            width:stretch
+        }
+        header, footer{  /**태그 선택자. 선택할 대상을 태그로 작성*/
+            color:blue;
+            border: 1px solid gray; /* border 1px짜리 실선 회색*/
+        }
+        h1{
+            border : 1px solid red;
+            margin: 0; /*밖여백 위 오른쪽 아래 왼쪽*/
+        }
+        li, p{
+            color:red;
+            background-color:pink;
+            font-weight:bold;
+        }
+        p{
+            color:gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>00주식회사</h1>    
+    </header>
+    <nav>
+        <ul>
+            <li>회사소개</li>
+            <li>서비스소개</li>
+            <li>고객센터</li>
+            <li>공지사항</li>
+        </ul>
+    </nav>
+    <section>
+        <p>
+            lipsum.com : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+        </p>
+    </section>
+    <footer>
+        <p>
+            서울시 관악구 신림동 르네상스빌딩 901호<br />
+            Copyright ⓒ All rights reserved. co,
+        </p>
+    </footer>
+</body>
+</html>

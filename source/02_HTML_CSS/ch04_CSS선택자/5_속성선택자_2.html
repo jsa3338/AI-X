@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>5_속성선택자_2</title>
+    <style>
+        #wrap{
+            width:500px;            
+            margin:0 auto;
+        }
+        #header {
+            text-align: center;
+        }
+        #header h1{
+            margin:0 auto 30px auto;
+            color:orange;
+        }
+        #section {
+            padding: 10px 30px;
+            border-block: 1px solid gray;            
+        }
+        #section h4[title^='남자']{
+            background:url('man.png') no-repeat;
+            padding: 0 0 0 30px
+        }
+        #section h4[title^='여자'] {
+            background: url('woman.png') no-repeat;
+            padding-left:30px;
+        }
+        #section p{
+            text-align:center;
+        }
+        #section p a{
+            color:darkgray;
+            text-decoration:none;  /* a태그에 밑줄 제거*/
+        }
+        #wrap a[href $='docx'], #wrap a[href $='doc'] {
+            background: url('woman.png') right no-repeat;
+            padding-right: 30px;
+        }
+        #wrap a[href $='xlsx'], #wrap a[href $='xls'] {
+            background: url('woman.png') right no-repeat;
+            padding-right: 30px;
+        }
+        #footer {
+            text-align: center;
+            color: gray;
+            font-size:.8em;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h1>객실안내</h1>
+        </div>
+        <div id="section">
+            <h4 title="남자도미토리">남자 도미토리</h4>
+            <ul>
+                <li>공동취사실 및 욕실(화장실) 사용</li>
+                <li>1인 20,000원(비수기), 25,000원(성수기)</li>
+            </ul>
+
+            <h4 title="여자도미토리">여자 도미토리</h4>
+            <ul>
+                <li>취사 기구 완비 실내욕실(화장실) 사용</li>
+                <li>1인 30,000원(비수기), 40,000원(성수기)</li>
+            </ul>
+            <p><a href="intro.docx">유의사항 다운로드</a></p>
+            <p><a href="intro.xlsx">객실자료 다운로드</a><img src="" /></p>
+        </div>
+        <div id="footer">
+            <p>
+                서울시 마포구 노고산동 그랜드빌딩 704호
+            </p>
+        </div>
+    </div>
+</body>
+</html>

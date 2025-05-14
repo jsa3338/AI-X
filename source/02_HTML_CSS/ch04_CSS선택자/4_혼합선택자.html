@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div{
+            border: 1px solid gray;
+        }
+        div#header { /* 혼합선택자 : 태그선택자와 id선택자를 혼합 : 가독성증가하지만 굳이? */
+            width: 600px;
+            margin: 0 auto;
+            background-color: yellow;
+            text-align: center;
+        }
+        #wrap{
+            width:600px;
+            margin:0 auto;
+            background-color:aqua;
+            overflow:hidden;
+            text-align:center;  /* 글씨나 img 가운데 정렬 */
+        }
+            #wrap #content {
+                width: 348px;  /* #content 영역 은 border영역을 포함 348+2 */
+                height:300px;
+                float: left;
+            }
+            #wrap #content li.odd{  /* 혼합 선택자 : li태그이면서 class명이 odd  */
+                font-size: 1.5em; /* 글씨크기를 원래의 1.5배*/
+            }
+            #wrap #content li.menu1,
+            #wrap #content li .menu2{  /* li 태그 밑에 menu2 클래스 (없음)*/
+                font-weight:bold; 
+            }
+
+            #wrap #banner {
+                width: 248px; /* #banner 영역 은 border영역을 포함 248+2 */
+                height: 300px;
+                float: left;
+            }
+            #wrap #banner img{
+                width:160px;
+            }
+        #footer { /* id 선택자. id앞에는 # */
+            clear:both;
+            width: 600px;
+            margin: 0 auto;
+            background-color: yellow;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>HEADER</h1>
+    </div>
+    <div id="wrap">
+        <div id="content">
+            <h2>content</h2>
+            <ul>
+                <!--id는 큰태그에, class는 작은 태그에 / id는 유일값이어야 하지만, class는 n개를 가질 수 있다-->
+                <li class="menu1 odd">menu1</li>
+                <li class="menu2">menu2</li>
+                <li class="menu3 odd">menu3</li>
+                <li class="menu4">menu4</li>
+                <li class="menu5 odd">menu5</li>
+            </ul>
+        </div>
+        <div id="banner">
+            <h2>
+                BANNER
+            </h2>
+            <img src="sulhyun.jpg" />
+        </div>
+    </div>
+
+    <div id="footer">
+        <h1>FOOTER</h1>
+
+    </div>
+
+
+</body>
+</html>

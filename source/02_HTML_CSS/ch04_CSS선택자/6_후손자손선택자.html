@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap {
+            width: 600px;
+            margin: 0 auto;
+            border: 1px solid darkgray;
+        }
+        #wrap > #header {  /* warp 바로 밑의 자손선택자 ">" */
+            overflow:hidden;  /*수평으로 만들려는 태그 부모단*/
+        }
+        #wrap .logo { /* space : 후손 선택자 */
+            float: left;
+            padding:10px 30px 10px 150px
+        }
+        #wrap .title { /* space : 후손 선택자 */
+            float: left;
+            padding:20px 150px 10px 30px
+        }
+        div p{
+            font-size:24px;
+        }
+        div > p {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="logo"><h1>LOGO</h1></div>
+            <div class="title"><h2>진성주식회사</h2></div>
+        </div>
+
+        <div id="content">
+            <p>
+                교육의 자주성·전문성·정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다. 국토와 자원은 국가의 보호를 받으며, 국가는 그 균형있는 개발과 이용을 위하여 필요한 계획을 수립한다.<br />
+                선거운동은 각급 선거관리위원회의 관리하에 법률이 정하는 범위안에서 하되, 균등한 기회가 보장되어야 한다. 제1항의 지시를 받은 당해 행정기관은 이에 응하여야 한다.
+            </p>
+            <ul>
+                <li><p>여기 content 밑에 ul 밑에 li 밑에</p></li>
+                <li><p>여기 content 밑에 ul 밑에 li 밑에</p></li>
+                <li><p>여기 content 밑에 ul 밑에 li 밑에</p></li>
+            </ul>
+        </div>
+        <div id="footer">
+            <p>주소</p>
+        </div>
+    </div>
+
+</body>
+</html>

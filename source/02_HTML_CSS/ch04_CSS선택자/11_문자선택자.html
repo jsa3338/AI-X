@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap{
+            width:750px;
+            margin:0 auto;
+        }
+        #header{
+            text-align:center;
+        }
+        #content{
+            border-block:1px solid darkgray;
+            text-align:justify;
+        }
+        #content p:nth-child(2)::first-line,
+        #content p:nth-child(3)::first-line{
+            color:blue;
+            font-weight:bold;
+        }
+        #content p:nth-child(2)::first-letter,
+        #content p:nth-child(3)::first-letter {
+            font-size:2.5em;
+        }
+        #footer ul{
+            overflow:hidden;            
+        }
+        #footer ul li{
+            float:left;
+            list-style:none;
+            padding:10px
+        }
+        #footer ul li:first-child {
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h1>제목이나 회사명</h1>
+        </div>
+        <div id="content">
+            <p>오후에 기온 오름. 덥다</p>
+            <p>
+                평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다. 국가유공자·상이군경 및 전몰군경의 유가족은 법률이 정하는 바에 의하여 우선적으로 근로의 기회를 부여받는다.
+            </p>
+            <p>
+                군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다.
+            </p>
+
+        </div>
+        <div id="footer">
+            <ul>
+                <li><img src="ch04/logo.png" /></li>
+                <li><img src="ch04/address.png" /></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

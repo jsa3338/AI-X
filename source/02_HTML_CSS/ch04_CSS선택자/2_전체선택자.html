@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>1_태그 선택자_CSS를 입혀보자</title>
+    <style> /* CSS는 위에서부터 아래로 차례차례 적용*/        
+        *{ /* 전체선택자 : 페에지 전체 태그 - 페이지초기화 용도*/
+            margin:0;
+            padding:0;
+            color:saddlebrown;
+        }
+        header, nav, section,footer{
+            width:500px;  /*가로사이즈. width를 지정하지 않으면 block형 태그는 부모 width를 따름*/
+            border: 1px solid gray;
+            margin:10px auto;
+        }
+        nav ul { /*수평으로 하려는 태그의 부모*/
+            overflow:hidden;
+        }
+        nav ul li { /*수평으로 할 태그*/
+            float: left;
+            width: auto;
+            list-style: none;
+            /*margin:10px 30px;
+            border: 1px solid red;*/
+            width:125px;
+            text-align:center;
+            margin:10px 0
+            }
+        section{ /*수평속성을 지우고 싶은 태그*/
+            clear:both;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>00주식회사</h1>    
+    </header>
+    <nav>
+        <ul>
+            <li>회사소개</li>
+            <li>서비스소개</li>
+            <li>고객센터</li>
+            <li>공지사항</li>
+        </ul>
+    </nav>
+    <section>
+        <p>
+            lipsum.com : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+        </p>
+    </section>
+    <footer>
+        <p>
+            서울시 관악구 신림동 르네상스빌딩 901호<br />
+            Copyright ⓒ All rights reserved. co,
+        </p>
+    </footer>
+</body>
+</html>

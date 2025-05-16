@@ -1,0 +1,107 @@
+﻿/*웹서비스개발.css*/
+*{
+    margin:0;
+    padding:0;
+}
+li{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+    color:black;
+    display:block;
+}
+#wrap{
+    width:1000px;
+    margin:0 auto;
+    padding 5px;
+    border:2px solid black;
+}
+
+nav{
+    overflow:hidden;
+}
+nav  li {
+    padding: 5px 20px;
+    margin: 5px 15px 20px;
+}
+nav #nav_left li{
+    float:left;
+}
+nav #nav_right li{
+    float:right;
+}
+nav #nav_left li:first-child{
+    border: 1px solid gray;
+    background-color:#fdeada;
+}
+#content{
+    padding:5px;
+    overflow:hidden;
+}
+#content #title p{
+   padding:5px;
+   border-bottom: 1px solid gray;
+   margin-bottom:10px;
+}
+#content #lnb{
+    float:left;
+    width:180px;
+    margin:0 20px 0 20px;
+
+}
+#content #lnb li{
+    height: 35px;
+    
+    border: 1px solid gray;
+    box-sizing: border-box;
+    padding: 0 30px;
+    
+}
+#content #lnb li a{
+    line-height: 35px;
+    font-size: 14px;
+}
+#content #lnb li:nth-child(4) {
+    background-color: #fdeada;
+    font-weight: bold;
+}
+
+#content #my_content {
+    border: 1px solid gray;
+    float:right;
+    width:760px;
+    height:500px;
+}
+label{
+    display:block;
+}
+#content #my_content .sub_title p {
+    border-bottom: 1px solid gray;
+    padding: 5px;
+}
+    #content #my_content .modify table {
+        width:70%;
+        margin: 30px auto;   
+    }
+    #content #my_content .modify td {
+        padding: 3px 0;
+    }
+        #content #my_content .modify table input[type='text'],
+        #content #my_content .modify table input[type='email'] {
+            width: 90%;
+            height: 25px;
+            border: 1px solid gray;
+        }
+    #content #my_content .modify form tr:last-child td:last-child {
+        text-align: center;
+        padding:40px 0 0 0;
+        width:30px;
+    }
+footer {
+    text-align: center;
+    background-color: #fdeada;
+    padding: 5px 0;
+    margin: 20px 5px 5px;
+    border: 1px solid gray;
+}

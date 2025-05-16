@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        *{
+            margin:0; 
+            padding:0;
+        }
+        div {
+            width:200px;
+            height:200px;
+            opacity:0.7;
+            border:1px solid red;
+        }
+        #div1 {
+            position: absolute; /*절대좌표*/
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            z-index: 9;   /*요소가 겹쳐질 경우, z인덱스 값이 크면 위로 배치된다*/
+        }
+        #div2 {
+            background-color: blue;
+            position: fixed;  /*화면이 이동해도 그 위치 그대로*/
+            top: 100px;
+            left: 100px;
+            z-index:9;
+        }
+        #div3 {
+            background-color: green;
+            position: absolute;
+            top: 350px;
+            left: 350px;
+            width:300px;
+            height:300px;
+            z-index: 9;
+        }
+        #div4 {
+            background-color: yellow;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="div1">1</div>
+    <div id="div2">2</div>
+    <div id="div3">3
+        <div id="div4" style="border:1px solid green;">4</div>
+    </div>
+    
+
+</body>
+</html>

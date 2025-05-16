@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #yellow {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: yellow;
+            position: relative;   /* 부모에 상대좌표를 입력*/
+        }
+        #yellow > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+            #yellow > #green {
+                background-color: green;
+                position: absolute;
+                top: 100px;
+                left: 50px;
+                z-index:9999;
+            }
+            #yellow > #red {
+                background-color: red;
+                position: absolute;
+                top: 40px;
+                right: 80px;
+                z-index: 2;
+            }
+    </style>
+</head>
+<body>
+    <div id="yellow">
+        yellow
+        <div id="green">green</div>
+        <div id="red">red</div>
+    </div>
+
+</body>
+</html>

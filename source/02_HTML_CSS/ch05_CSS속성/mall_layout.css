@@ -1,0 +1,167 @@
+﻿/*mall_layout.css*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Serif", serif;
+}
+a{
+    text-decoration:none;
+    color:black;
+}
+li{
+    list-style:none;
+}
+#header .gnb{
+    background-color:black;
+    height:30px;
+    
+}
+#header .gnb > ul {
+    overflow: hidden;
+    width:1000px;
+    margin: 0 auto;
+    line-height:30px;
+}
+#header .gnb > ul > li{
+    float:left;
+    width:10%;    
+}
+#header .gnb > ul > li > a{
+    color: white;
+}
+#header .logo {
+    width:200px;
+    height:100px;
+    line-height:100px;
+    margin:30px auto;
+    text-align:center;
+    font-size:30px;
+    border: 1px solid gray;
+    font-family:'Black Han Sans';
+}
+#header .hitmenu {
+    width:1000px;
+    margin:0 auto;
+}
+#header .hitmenu ul {
+    overflow: hidden;
+}
+#header .hitmenu ul li{
+    float:right;
+    width:100px;
+    height:40px;
+    line-height:40px;
+    list-style:none;
+    border:2px solid gray;
+    text-align:center;
+}
+#header .hitmenu ul li:first-child{
+    border-radius: 0 10px 10px 0;
+}
+#header .hitmenu ul li:last-child {
+    border-radius: 10px 0 0 10px;
+}
+#header .lnb {
+    border-block: 1px dashed gray;
+    margin:3px 0 0 0;
+    height:30px
+}
+#header .lnb ul {
+    width:1000px;
+    margin:0 auto;
+    overflow: hidden;
+}
+#header .lnb ul li{
+    float:left;
+    width:12.50%;
+    line-height:30px;
+    font-weight: bold;   
+}
+#content, #footer {
+    text-align: center;
+}
+#content .section1 {
+    height: 400px;
+    width: 1000px;
+    margin: 0 auto;
+    border:1px solid gray;
+    overflow: hidden;
+    }
+#content .section1 .slide_banner {
+    width: 700px;
+    border-right:1px solid gray;
+    box-sizing: border-box;
+    line-height: 398px;
+    float: left;
+    }
+#content .section1 .side_banner {
+    width: 300px;
+    border-left:1px solid gray;
+    box-sizing: border-box;
+    line-height: 398px;
+    float: left;
+    }
+#content .section2 {
+    width: 1000px;
+    margin: 0 auto;
+    }
+#content .section2 .hit_product,
+#content .section2 .md_product{
+    border: 1px solid gray;
+    box-sizing: border-box;
+    margin: 10px 0;
+    }
+#content .section2 ul {
+    overflow: hidden;          
+    }
+#content .section2 ul li {
+    float: left;
+    height: 400px;
+    width: 24%;
+    line-height:400px;
+    margin-left:.8%;
+    border: 1px solid gray;
+    box-sizing:border-box;
+}
+#footer {
+    width: 1000px;
+    margin: 0 auto;
+    
+}
+#footer .footer_wrap{
+    overflow: hidden;
+}
+#footer .office_logo {
+    float: left;
+    height: 100px;
+    width: 33.3%;
+    line-height:100px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    }
+#footer .office_address {
+    float: left;
+    height: 100px;
+    width: 33.3%;
+    line-height:100px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    }
+#footer .shopping_info {
+    float: left;
+    height: 100px;
+    width: 33.3%;
+    line-height:100px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    }
+#footer .copyright {
+    clear:both;
+    height: 30px;
+    line-height:30px;
+    background-color:black;
+    color:white;
+    font-size:0.8em;
+    display: flow-root;
+    margin: 5px 0 0 0;
+    }

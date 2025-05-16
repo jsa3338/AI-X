@@ -1,0 +1,91 @@
+﻿/*header.css*/
+/*초기설정*/
+* {
+    margin: 0;
+    padding: 0;    
+}
+a {
+    text-decoration: none;
+    color: black;
+    display: block; /* a태그를 블록 타입으로 하여 영역 확장*/
+}
+li{
+    list-style:none;
+}
+header {
+    text-align: center;
+    font-family: "Noto Serif", serif;
+}
+
+/*GNB*/
+header .gnb {
+    background-color:black;
+    height:30px;
+    min-width:1000px;
+    
+}
+header .gnb ul{
+    width:1000px;
+    margin: 0 auto;
+    overflow:hidden;
+}
+header .gnb ul li {
+    float:left;
+    width:9%;
+    margin:0 0.5%;
+}
+header .gnb ul li a {
+    line-height:30px;
+    color: white;
+}
+/*로고*/
+header .logo {
+    font-family: "Pacifico", cursive;
+    width:200px;
+    height:100px;
+    line-height:100px;
+    margin:30px auto;
+    border:2px solid darkgray;
+    font-size:2.5em;
+}
+/*히트메뉴*/
+header .hitmenu ul{
+    min-width:1000px;
+    margin:3px auto;
+    overflow:hidden;
+}
+header .hitmenu ul li{
+    float:right;
+    border:1px solid gray;
+/*    width:100px;
+    height:40px;
+    line-height:40px;
+    margin:2px 0;*/
+}
+    header .hitmenu ul li a{
+        padding:10px 30px; 
+    }
+    header .hitmenu ul li:first-child {
+        border-radius: 0 10px 10px 0;   /* 좌상 우상 우하 좌하*/
+    }
+header .hitmenu ul li:last-child {
+    border-radius: 10px 0 0 10px;
+}
+/*LNB*/
+header .lnb {
+    border-block: 1px dashed gray;
+    height:30px;
+    min-width:1000px;
+}
+header .lnb ul{
+    width:1000px;
+    margin: 0 auto;
+}
+header .lnb ul li {
+    float:left;
+    width:11.5%;
+    margin: 0 0.5%;
+}
+header .lnb ul li a {
+    line-height:30px;
+}

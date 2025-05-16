@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>폰트 설정</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <!-- 스타일 태그 위에 넣어야 설정이 가능하겠지?!-->
+    <style>
+        @font-face {
+            font-family: '꽃내음';
+            src: url('ch05/NanumGgocNaeEum.ttf')
+        }
+
+        p.localfont {
+            font-family: 꽃내음, 'Malgun Gothic';
+            line-height: 40px; /* 행간격 늘리기 */
+            text-decoration: underline;
+            font-size: 2em;
+            font-style: italic
+        }
+
+        p.webfont {
+            font-family: "Jua", sans-serif;
+            font-weight: 400;
+            font-size: 2em;
+        }
+    </style>
+
+</head>
+<body>
+    <p class="localfont">
+        다운받은 ttf파일을 내 경로 안에 넣고 font-face설정한 후 사용 : <br />
+        최근 미국에서 주로 튀길 때 사용되던 '씨앗유'를 퇴출하고, 대신 '소 기름'을 사용하자는 움직임이 나타나고 있다. 지난해에는 'Seed Oil Free' 인증 제도까지 도입됐을 정도다. 한 독립기관에서 마요네즈, 드레싱까지 포함해 제품에 사용된 모든 지방 성분에 씨앗유를 포함하지 않았는지 철저히 확인해 인증하고 있다. 현재 40개 이상의 브랜드와 레스토랑이 인증을 획득한 것으로 알려졌다.
+    </p>
+    <p class="webfont">
+        fonts.google.com의 인터넷 폰트 :  <br />
+        로버트 F. 케네디 주니어가 미국 보건부 장관으로 임명되면서 시작된 변화인데, 케네디 주니어는 장관이 되기 전부터 씨앗유가 건강을 망친다고 비판해왔다. 임명된 후에는 'Make America Healthy Again(MAHA)' 캠페인의 일환으로, 씨앗유를 건강한 음식에서 배제했다. 지난 3월에는 감자튀김에 사용하는 기름을 소 기름으로 바꾼 한 레스토랑을 직접 방문해 칭찬하기도 했다.
+    </p>
+</body>
+</html>

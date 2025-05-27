@@ -1,0 +1,62 @@
+ch12. jQuery
+
+0. 개요
+	jQuery는 자바스크립트에서 상당히 유용한 기능을 제공하는 라이브러리
+	사용이 매우 간편한 장점이 있다. 다만 이제는 jQuery를 많이 사용하지는 않는 추세
+	http://www.w3schools.com : jQuery강좌와 풍부한 예제
+	http://www.jquery.com : API documentation, 버전정보, 예제들, UI제공
+
+1. jQuery 사용 방법
+    기본형 - $(선택자).함수()
+	1) html()  해당 선택자 안에 html코드 삽입 
+  	2) text()   해당 선택자 안에 text 삽입 
+  	3) val('변형될 value') ; value값 변형
+  	4) css('속성', '속성값')
+	5) 이벤트 관련 함수들
+     	  - click(콜백함수), focus(콜백함수), submit, keyup, etc...
+	6) aJax관련 함수들 : $.get(), $.post(), $.ajax()
+
+
+2. 기본 활용 방법
+	val(내용) - 내용을 입력, val() - value 내용을 반환
+            html(내용) - innerHTML을 내용으로 입력, html() - innerHTML을 반환
+            text(내용) - 태그 안의 text 내용 입력 , text() - 태그 안의 text가 반환
+
+3. ajax 함수
+   - aJax함수 종류 : $.get(), $.post(), $.ajax()
+            $.get(요청경로, callback(data, status){
+                data : 요청경로를 수행한 결과
+                status : success / fail
+                });
+            $.post(요청경로(xx), 요청파라미터값의 객체({id:'aa'}), callback);
+            $.ajax({
+                url:'요청경로(xx?id=aa / xx)*', 
+                type: 'get' or 'post' or 생략가능,
+                data: 요청파라미터와 값 'id=aaa' or {id:'aaa'},
+                dataType: 'html'/'json' 요청한 경로로 실행한 결과의 타입,
+                success: 요청경로 성공시 수행할 콜백함수*,
+                error : 요청경로 실패시 수행할 콜백함수
+                });
+
+4. fetch()
+	비동기 처리함수, 비동기 작업의 결과를 약속하는 함수 ==  fetch(요청경로, 메소드방식)
+	(ex) fetch(`exist.html?${params}`,{method:'get'})
+		.then( response=>{
+			if(!response.ok){  // 요청경로의 응답이 정상적으로 왔는지 여부 체크
+	                            throw new Error(`${response.status} / ${response.statusText}`);  // throw 를 사용해 Error라는 예외객체를 생성. 실행되면 끝.
+			}
+                        		return response.text();                    
+                		})
+                		.then(data=>{
+                    			document.querySelector('span#idConfirm').innerHTML = data.trim();
+               		 })
+                		.catch(error=> {
+                    			alert(error.message);
+                		});
+
+
+
+
+
+
+

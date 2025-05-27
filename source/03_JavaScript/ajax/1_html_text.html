@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        
+    </style>
+    <script>
+        // j쿼리 소스 : $(선택자).함수()
+        
+        $(document).ready(function(){  // 브라우저가 DOM트리를 만들자마자 시행해라
+            $('p#p1').click(function(){
+                // 선택자가 클릭되었을때 
+                $(this).html('<b>태그내용이 html에 적용되어 바뀜</b>');
+                $(this).css('background-color', 'red')
+                        .css('color', 'yellow')
+                        .css('height', '100px')
+                        .css('line-height', '100px');
+            });
+        });
+        $(function(){
+            // jQuery 소스
+        })
+        
+    </script>
+</head>
+<body>
+    <p id="p1">Click!</p>
+</body>
+</html></html>

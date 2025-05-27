@@ -1,0 +1,6 @@
+Open API 신청
+1. 네이버 개발자 센터 (https://developers.naver.com/) -> 로그인 -> 어플리케이션 등록
+	-> .env 생성 및 .gitignore에 .env 추가
+
+2. 공공데이터 (https://www.data.go.kr/) -> 로그인 
+	-> 서울특별시 노선정보 서비스/ 서울특별시 버스위치정보조회 서비스 활용신청(1~2시간 뒤 활용가능)

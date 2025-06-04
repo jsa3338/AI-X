@@ -1,0 +1,18 @@
+CH05_ Sequence
+- 순차적인 번호를 자동으로 생성하는 객체로 테이블과 독립적으로 생성 및 저장 가능
+
+<문법>
+CREATE SEQUENCE sequence_name 
+	[INCREMENT BY n]  [START WITH n] 
+	[MAXVALUE n] [MINVALUE n]
+	[CYCLE | NOCYCLE]
+	[CACHE n | NOCACHE];
+
+<적용방식> 
+시퀀스 생성
+	CREATE SEQUENCE FRIENDS_SEQno 
+		MAXVALUE 999 
+		NOCACHE;
+인서트 매개변수로 객체 삽입
+	INSERT INTO FRIENDS (ID, NAME, PHONE) 
+		VALUES (FRIENDS_SEQno.NEXTVAL,'홍길동','010-9999-9999');

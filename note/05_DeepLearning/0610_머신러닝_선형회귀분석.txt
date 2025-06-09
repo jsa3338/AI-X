@@ -1,0 +1,39 @@
+01_머신러닝 입문 - 선형회귀분석
+
+<기존 프로그램 방식>
+- 회귀분석(linear regression) 설명 사이트 : https://gbhat.com/machine_learning/linear_regression.html
+- 오차함수 : MSE(오차제곱평균), RMSE(루트를 취하기 때문에 MSE의 단점이 어느정도 해소. 이상치에 덜 민감), MAE(mean absolute erro error ; 절대값평균)
+- 
+https://jysden.medium.com/%EC%96%B8%EC%A0%9C-mse-mae-rmse%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80-c473bd831c62
+![image](https://miro.medium.com/v2/resize:fit:720/format:webp/1*XRXgMqrr5rq-V1rW7SkrtA.png)
+- 경사하강법 설명 (https://www.mql5.com/ko/articles/11200)
+
+<머신러닝 프로그래밍 방식>
+
+1. 데이터 확보 및 생성
+2. 데이터 전처리 : 
+    스케일 조정
+    훈련데이터(학습데이터셋), 검증데이터셋, 시험데이터셋으로 분할
+3. 모델구성
+   - 필요 모듈
+	from tensorflow.keras.models import Sequential # 모델 생성
+	from tensorflow.keras.layers import Dense, Input # 입력값과 출력값으로 레이어층 지정
+   - 진행과정
+	model = Sequential()   # 빈모델 생성
+	model.add(Dense(units=1,   # 타겟(종속) 변수의 갯수
+                	input_shape = (1,)))   # 입력(독립) 변수의 shape
+4. 모델 학습 과정 설정 - complie()
+	model.compile(loss='mse',    # 오차(loss) 함수를 mse로 계산하겠다 - 모델학습중 오차를 최소화하기 위해 사용
+             	optimizer='rmsprop',   # 옵티마이저 : 오차를 줄이는 최적화 방식을 'rmsprop'로 설정 / 'adam' 추천
+             	metrics=['mae'])   # 평가 지표를 'mae'로 넣겠다
+5. 모델 학습시키기 - fit()
+	model.fit(scaled_data_C, # 입력변수(훈련데이터)
+                 	scaled_data_F, # 타겟변수(훈련데이터)
+                 	epochs=1000,  # 학습횟수
+                 	verbose=2)  # 학습시 출력여부(0:학습내용출력, 1:학습내용 일부 출력, 2:학습내용 정확히 출력)
+6. 모델평가 (시험데이터셋으로)
+   - 그래프 그리기
+7. 모델 저장
+	model.save('경로/파일명.h5')
+8. 모델 사용(입력값이 주어지면 예측값 받기)
+	y_hat = model.predict([' 훈련 독립 변수 데이터 셋'])

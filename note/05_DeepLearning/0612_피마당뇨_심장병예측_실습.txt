@@ -1,0 +1,82 @@
+<피마 인디언 당뇨병 예측 실습
+이진분류와 분류분석 처리 과정>
+
+1. 데이터 셋 생성 & 전처리
+      ** 엑셀 -> 데이터프레임 -> ?처리 (df.replace('?', np.nan) -> 결측치처리
+     	-> X, y 분리 -> X 변수 스케일 조정 -> 훈련-연습 데이터 분할(train_test_spilt)
+     	(분류분석) -> y 변수들의 원핫인코딩
+
+ 	- 결측치 처리 : df.fillna(), df.dropna() 등 함수 이용
+	- 스케일 조정 : MinMaxScaler(), Standardization() 객체 사용
+	- 훈련-연습 데이터 분할: train_test_spilt()
+	   (ex) X_train, X_test, y_train, y_test = train_test_split(scaled_X_data, y_data, 
+                                                    test_size=0.3, # 테스트셋 비율
+                                                    shuffle=True, # 랜던하게 섞기
+                                                    random_state=7, # 시드
+                                                    stratify=y_data) # 층화추출(y_data 값 기준으로 비중균일하게 추출)
+	- 원핫인코딩 : to_categorical('인코딩할 데이터') 
+
+2. 모델 생성 (사용 예시)
+    ** 사용 예시 **
+	# 레이어 6개(히든-relu, 출력-softmax) 8개 -> 32 -> 64 -> 16 -> 8 -> 1
+	model.add(Input(shape=(8,)))
+	model.add(Dense(units=32, activation='relu'))
+	model.add(Dropout(0.2))    # 과적합을 해결하고자 두루뭉실하게 넘기려는 방법. 20% 정도 날리겠다.
+	model.add(Dense(units=64, activation='relu'))
+	model.add(Dropout(0.2))    # 과적합을 해결
+	model.add(Dense(units=16, activation='relu'))
+	model.add(Dropout(0.1))    # 과적합을 해결
+	model.add(Dense(units=8, activation='relu'))
+	model.add(Dense(units=2, activation='softmax'))
+      ** 확인 사항 **
+	- 이진분류 : 활성화함수 sigmoid 권장, y 값이 1열이므로 출력층 레이어 unit=1
+	- 분류분석 : 활성화함수 softmax 권장, y 값이 원핫인코딩으로 인해 2열 이므로 출력층 레이어 unit=2
+
+3. 모델 학습과정 설정
+      ** 이진분석
+	# 레이어 설정
+	model.compile(loss='binary_crossentropy',
+             	optimizer='adam',     	# 하고싶은 걸로 가능. adam 추천
+             	metrics=['binary_accuracy'])   # accuracy로 대체 가능
+      ** 분류분석
+	model.compile(loss='categorical_crossentropy',
+             	optimizer='nadam',
+             	metrics=['accuracy']) 
+
+4. 모델 학습
+      ** 사용예시
+	hist2 = model.fit(X_train, y_train,   # 훈련데이터
+		epochs=2000,   # 학습횟수
+		batch_size=350,    # 한번에 읽어들이는 데이터 양
+		validation_data= (X_val, y_val), # 검증데이터를 직접 입력하거나
+		validation_split= 0.2,               # 훈련데이터의 일정 비율로 랜덤추출 설정할 수 있음
+		verbose=0)
+	
+5. 모델평가 (그래프, 평가, 교차표)
+	- 그래프
+	- 평가 : model.evaluate(테스트데이터x, 테스트데이터y)
+	- 교차표(Crosstab) = 혼돈 행렬(Confusion Matrix) = 성능평가지표
+	  참고 - 'https://velog.velcdn.com/images/jjw9599/post/271fc800-bffb-4e8f-83cf-d55d18ede61a/image.png'        		
+		- accuracy(정확도) = (TN + TP) / (TN + FP + FN + TP)
+		- precision(정밀도) = (TP) / (FP + TP)
+    		   * precision을 높이려면 확실한 것만 Positive로 예측, 실제 1이어도 애매하면 패스 : 고객은 편함 / 회사는 비용 증가
+		- recall(재현율) = TP / (FN + TP)
+    		   * recall을 높이려면 조금이라도 가능성이 있으면 Positive로 예측 : 고객은 불만 / 회사는 비용 감소
+		- precision과 recall 반비례 관계이므로 적적한 지점을 찾는게 필요하여 f1-score를 사용하기도 한다
+		- fl score = recall과 precision의 조화평균
+    		   * 2 * { ( recall * precision ) / (recall + precision ) }
+	- 교차표 그리기
+		pd.crosstab(y_test, y_hat.argmax(axis=1))
+		
+5. 모델 사용(저장, 예측)
+	predict 함수를 통해, 모델의 예측값 확인, 변수에 넣어 예측을 판별할 수 있다.
+	y_hat = (model.predict(X_test)>=0.5).astype(float)
+	- 교차표 그리기 (2가지) 
+		pd.crosstab(y_test,  y_hat.reshape(-1))   # 데이터프레임으로 출력
+		confusion_matrix(y_test,  y_hat.reshape(-1))   # 배열로 출력
+
+
+
+
+
+

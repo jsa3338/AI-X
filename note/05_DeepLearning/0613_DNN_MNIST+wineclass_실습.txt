@@ -1,0 +1,53 @@
+<MNIST 손글씨 데이터>
+1. cv2패키지 이용
+ - 설치방법 (주피터노트북 내에서)
+	%pip install opencv-contrib-python
+	%pip install opencv-python
+ - 이미지 읽기(넘파이배열로 인식)
+	cv2.imread('이미지파일', cv2.IMREAD_GRAYSCALE)  # 그레이 스케일로 읽기
+ - 이미지 표시
+	plt.imshow(이미지객체, cmap='gray')  # 흑백으로 표시
+- 손글씨 데이터 셋 읽기
+	(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+<콜백함수 활용>
+1. 로그 출력
+  - 콜백에게 상속받는 클래스 생성
+
+class CustomHistory(Callback):  # 콜백에게 상속 받는 클래스 생성
+    def __init__(self): # 생성자 함수
+        self.epoch = 0
+    def on_epoch_end(self, batch, logs={}): # 1 epoch 마다 자동실행되는 함수
+        self.epoch += 1
+        if self.epoch%10==0:
+            print('epoch:{}, loss:{}, acc:{}, val_loss:{}, val_acc:{}'.\
+                  format(self.epoch,
+                        logs.get('loss'),
+                        logs.get('accuracy', '-'),
+                        logs.get('val_loss', '-'),
+                        logs.get('val_accuracy', '-')))
+
+2. EarlyStopping
+
+earlystopping = EarlyStopping(monitor='val_loss',  # val_loss 가 기본값, val_loss를 기준으로 보겠다
+                             patience=20)   # patience 수 많큼 참아주겠다, 보통은 40~50은 넣는다
+
+3. 자동저장
+
+# 모델 자동 저장 콜백(경로 및 파일명 규칙 지정)
+import os
+model_save_folder = './model08/'
+if not os.path.exists(model_save_folder):  # 폴더가 없으면 폴더 생성
+    os.mkdir(model_save_folder)
+file = model_save_folder+ 'mnist-{epoch:03d}-val{val_accuracy:.4f}.h5'  # f 스트링 안해도 됨. keras에서 f스트링으로 읽어줌
+    
+    
+checkpoint = ModelCheckpoint(filepath=file,
+                            monitor='val_accuracy',  # 모니터 지표
+                            save_best_only=True,  # 모니터 지표가 개선된 경우만 저장
+                            mode = 'max',  # max : 값이 커질수록 저장 / min : 값이 작아질수록 / auto : 알아서 하겠다
+                            verbose=1)  # 저장시 로그 출력
+
+<와인품질등급 실습>
+	- 이슈 : 5, 6 등급에만 데이터가 몰려있으며, 0~2, 9~10 등급은 데이터 부재, 그외 등급 또한 데이터 부족
+	- 실행시 5, 6 등급 외에 예측률 매우 낮음

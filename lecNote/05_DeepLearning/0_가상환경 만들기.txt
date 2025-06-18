@@ -27,3 +27,4 @@ pip install nltk==3.7 # 영어권 자연어처리
 pip install konlpy   # 한글 자연어 처리1 - java 기반 라이브러리
 pip install python-mecab-ko  # 한글 자연어 처리2 - C++ 기반 라이브러리
 pip install wordcloud
+pip install gensim

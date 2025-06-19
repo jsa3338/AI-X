@@ -28,3 +28,5 @@ pip install konlpy   # 한글 자연어 처리1 - java 기반 라이브러리
 pip install python-mecab-ko  # 한글 자연어 처리2 - C++ 기반 라이브러리
 pip install wordcloud
 pip install gensim
+pip install python-dotenv  # .env 읽어들이기
+pip install python-decouple  # .env 읽어들이기(주피터환경에서 안될수 있음)

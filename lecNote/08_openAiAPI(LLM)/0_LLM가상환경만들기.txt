@@ -18,3 +18,8 @@ pip install langchain-ollama    # llama model
 pip install langchain-openai    # gpt model # key가 필요하다
 pip install python-dotenv      # .env 파일 로드
 pip install langchain-anthropic # claude model
+
+pip install openai
+pip install streamlit
+
+pip install decouple

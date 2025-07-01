@@ -1,0 +1,18 @@
+ch1. xlwings
+- xlwings는 엑셀 파일을 파이썬으로 다룰 수 있는 라이브러리
+
+1. 활성화된 시트 가져오기
+# 엑셀윙즈 라이브러리 임포트
+import xlwings as xw
+
+# 현재 열린 엑셀 파일의 활성화된 시트를 가져오기
+wb = xw.apps.active.books.active   # 활성화된 엑셀 객체 만들기
+sheet = wb.sheets.active     # 엑셀객체의 화성화된 시트 객체 만들기
+print('데이터 가져와 연산수행')
+b1 = sheet.range('B1').value
+b2 = sheet.range('B2').value
+# b3에 b1 - b2 값 입력
+sheet.range('B3').value = b1-b2
+print('연산결과 쓰기 완료 ')
+
+2.

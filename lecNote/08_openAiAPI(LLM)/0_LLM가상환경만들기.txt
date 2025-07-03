@@ -23,3 +23,5 @@ pip install openai
 pip install streamlit
 
 pip install decouple
+
+(가상환경을 Jupyter에서 선택 가능한 커널로 등록) python -m ipykernel install --user --name jikfarm_do_api--display-name "jikfarm_do_api--"

@@ -1,0 +1,14 @@
+※ 가상 환경 만들기( do_api_env ) - 
+
+(현재 존재하는 가상환경 목록 확인) conda env list
+(가상환경 생성:-n은 --name을 의미) conda create -n do_api_env python=3.10 
+
+(생성한 가상환경으로 전환) conda activate do_api_env 
+(pip 최신버전으로 업데이트) python.exe -m pip install --upgrade pip
+
+(필요 패키지 설치) 
+pip install jupyter pandas==1.5.3 requests python-dotenv
+
+(가상환경에서 Jupyter를 설치해야 함) conda install ipykernel
+(가상환경을 Jupyter에서 선택 가능한 커널로 등록) python -m ipykernel install --user --name do_api_env --display-name "Do_API_env"
+

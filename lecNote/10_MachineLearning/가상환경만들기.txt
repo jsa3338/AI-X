@@ -1,0 +1,14 @@
+pip install pydot
+
+자료불균형(smote)과 앙상블 알고리즘 다운
+conda install -c conda-forge imbalanced-learn=0.9.1  # smote
+
+# 설치전 의존성 확인
+pip install --dry-run xgboost==1.7.3
+# 위에서 문제 없으면 설치
+pip install xgboost==1.7.3
+
+pip install lightgbm 
+
+pip install --dry-run catboost==1.2
+pip install catboost==1.2

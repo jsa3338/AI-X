@@ -1,0 +1,8 @@
+[오류] ❌ API 호출 제한 (LIMITED_ 응답)
+<OpenAPI_ServiceResponse>
+	<cmmMsgHeader>
+		<errMsg>SERVICE ERROR</errMsg>
+		<returnAuthMsg>LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR</returnAuthMsg>
+		<returnReasonCode>22</returnReasonCode>
+	</cmmMsgHeader>
+</OpenAPI_ServiceResponse>

@@ -1,0 +1,25 @@
+# 플라스크를 사용하기 위한 패키지 설치 : pip install flask
+from flask import Flask
+from predict import loaded_model, predict_apt_price
+
+application = Flask(__name__)  # 웹 어플리케이션 객체 생성
+
+@application.route("/")
+def handler_function():  # 핸들러 함수
+    return "<h1>Hello, Flask</h1>"
+
+# /apt/2005/106/8  --> 이러한 변수를 받는 라우팅을 동적 라우팅이라고 함
+@application.route("/apt/<year>/<square>/<floor>")
+def aptPredictHandler(year, square, floor):
+    answer = predict_apt_price(year, square, floor)
+    return  "<h1>예측금액은 {}입니다<h1>".format(answer)
+    # return {
+    #     'year' : year,
+    #     'square' : square,
+    #     'floor' : floor,
+    #     'price' : answer
+    # }
+
+if __name__=="__main__":
+    application.run(debug=True)   # 웹서버 실행 명령
+    # debug=True  : 코드 수정이 될 때마다 서버가 자동 재시작

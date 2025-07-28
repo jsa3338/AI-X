@@ -1,0 +1,19 @@
+step,code
+1. Load raw data from fact_trade,"df_raw = pd.read_sql(""SELECT * FROM fact_trade"", con=engine)"
+2. Merge with map_region_weather_station to get j_sanji_cd and station_cd,"df_map = pd.read_sql(""SELECT plor_cd, j_sanji_cd, station_cd FROM map_region_weather_station"", con=engine)
+df_daily = df_raw.merge(df_map, on='plor_cd', how='left')"
+3. Add avg_price and save to daily_trade,"df_daily['avg_price'] = df_daily['total_price'] / df_daily['total_qty']
+df_daily.to_sql(""daily_trade"", con=engine, if_exists=""replace"", index=False)"
+4. Weekly aggregate to weekly_trade,"df_daily['year_week'] = df_daily['trade_date'].dt.isocalendar().year.astype(str) + '-W' + df_daily['trade_date'].dt.isocalendar().week.astype(str).str.zfill(2)
+df_weekly = df_daily.groupby(['year_week', 'crop_full_code', 'j_sanji_cd', 'grade_label']).agg(
+    total_qty=('total_qty', 'sum'),
+    avg_price=('avg_price', 'mean')
+).reset_index()
+df_weekly.to_sql(""weekly_trade"", con=engine, if_exists=""replace"", index=False)"
+5. Create base_data by merging weather_weekly and factor_external,"df_weather = pd.read_sql(""SELECT * FROM weather_weekly"", con=engine)
+df_factor = pd.read_sql(""SELECT * FROM factor_external"", con=engine)
+df_weekly['item_code'] = df_weekly['crop_full_code'].str.slice(0, 4)
+df_base = df_weekly.merge(df_map, on='j_sanji_cd', how='left')\
+                   .merge(df_weather, on=['year_week', 'station_cd'], how='left')\
+                   .merge(df_factor, on=['year_week', 'item_code'], how='left')
+df_base.to_sql(""base_data"", con=engine, if_exists=""replace"", index=False)"

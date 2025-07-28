@@ -1,0 +1,687 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>데이터 플로우 명세서</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="231ef235-8248-802a-8aff-f8c40f680c09" class="page sans"><header><h1 class="page-title">데이터 플로우 명세서</h1><p class="page-description"></p></header><div class="page-body"><p id="231ef235-8248-8006-8bd3-da7447b87981" class="">
+</p><ul id="231ef235-8248-80c5-a00e-f7050a2f85b7" class="bulleted-list"><li style="list-style-type:disc">고려해볼 툴/서비스 : MySQL DBeaver 닷홈 mysql</li></ul><ul id="231ef235-8248-802e-bfb7-fc5df5f161b2" class="bulleted-list"><li style="list-style-type:disc">필요 테이블<ul id="231ef235-8248-80ba-a487-cac585d55149" class="bulleted-list"><li style="list-style-type:circle">trade_raw, weather_raw</li></ul><ul id="231ef235-8248-807e-82f5-c5e6315383c8" class="bulleted-list"><li style="list-style-type:circle">daily_trade, weekly_trade, weekly_weather</li></ul><ul id="231ef235-8248-80d1-a6d4-d70b4e5c6ed9" class="bulleted-list"><li style="list-style-type:circle">weekly_factor(휴일플래그, 명절지수, 작기지수)</li></ul><ul id="231ef235-8248-80e5-b2fb-fb6f93f291ca" class="bulleted-list"><li style="list-style-type:circle">base_data, predict_result (작물별로?)</li></ul><ul id="231ef235-8248-80c4-a203-de51a46bc8f1" class="bulleted-list"><li style="list-style-type:circle">graph_daily, graph_weekly (작물별로?)</li></ul></li></ul><ol type="1" id="231ef235-8248-8098-92ce-ecc057f748da" class="numbered-list" start="1"><li>API 데이터 수집 후 Raw 데이터베이스에 쌓음 (매주 월요일-파이썬)</li></ol><ol type="1" id="231ef235-8248-80a7-afa9-c5446ba53a1c" class="numbered-list" start="2"><li>Raw 데이터를 파싱하여 필요한 테이블(trade_raw, weather_raw)에 저장</li></ol><ol type="1" id="231ef235-8248-80b1-a479-d46bb48189d3" class="numbered-list" start="3"><li>정제 테이블 daily_trade, weekly_trade 생성/업데이트<ol type="a" id="231ef235-8248-80e3-9b51-d3a502fa11cc" class="numbered-list" start="1"><li>불필요한 칼럼 제거</li></ol><ol type="a" id="231ef235-8248-80f6-ba6b-e7a803d8249f" class="numbered-list" start="2"><li>이상치 제거 (1차) - 총금액 0이하, 총 거래량 0이하 제거</li></ol><ol type="a" id="231ef235-8248-8049-ad90-d2f72bb1b18e" class="numbered-list" start="3"><li>산지코드를 기준으로 직팜산지코드 테이블의 직팜산지코드 값을 매칭</li></ol><ol type="a" id="231ef235-8248-80f2-9252-ccf5bfa933bd" class="numbered-list" start="4"><li>산지코드, 산지이름 제거</li></ol><ol type="a" id="231ef235-8248-8046-ada5-ee36242ef337" class="numbered-list" start="5"><li>직팜산지코드, 날짜를 기준으로 병합 (일간)</li></ol><ol type="a" id="231ef235-8248-8011-b212-deabfbabe0d7" class="numbered-list" start="6"><li>등급 라벨링 (고, 중 저, 수입산)</li></ol><ol type="a" id="231ef235-8248-807e-8b69-c70e5fadd035" class="numbered-list" start="7"><li>daily_trade 테이블로 저장</li></ol><ol type="a" id="231ef235-8248-803b-a821-d33722305940" class="numbered-list" start="8"><li>직팜산지코드, 날짜를 기준으로 병합 (주간)</li></ol><ol type="a" id="231ef235-8248-807f-ba71-e57790d11013" class="numbered-list" start="9"><li>weekly_trade 테이블로 저장</li></ol></li></ol><ol type="1" id="231ef235-8248-8071-b8fa-db10f3df6a54" class="numbered-list" start="4"><li>정제 테이블 weekly_weather 테이블 생성/업데이트<ol type="a" id="231ef235-8248-80b5-ab33-f8914b274a06" class="numbered-list" start="1"><li>불필요한 칼럼 제거</li></ol><ol type="a" id="231ef235-8248-802a-bb9a-f5ef51c5c0c6" class="numbered-list" start="2"><li>주간 데이터 병합</li></ol><ol type="a" id="231ef235-8248-8044-b058-c96f2b820c39" class="numbered-list" start="3"><li>weekly_weather 테이블로 저장</li></ol><p id="231ef235-8248-80bd-8e1c-dfd710f7affd" class="">** 아래 에서 품종 등 칼럼 선별은 EDA를 통해 확정</p></li></ol><ol type="1" id="231ef235-8248-80c9-9d87-d8e2e4d0a0f3" class="numbered-list" start="5"><li>base_data 테이블 생성<ol type="a" id="231ef235-8248-80a9-be54-e57365e033e2" class="numbered-list" start="1"><li>weekly_trade 기준으로 [주차, (?품종), 등급, 거래량, 평균단가, 직팜산지코드] 추출</li></ol><ol type="a" id="231ef235-8248-808f-83d6-d7d5e0ed2a0c" class="numbered-list" start="2"><li>직팜산지코드 테이블의 값을 기준으로 관측소 테이블의 값을 매칭</li></ol><ol type="a" id="231ef235-8248-80af-9dff-d80f347ce728" class="numbered-list" start="3"><li>관측소 코드를 기준으로 weekly_weather 테이블의 평균기온, 최저기온, 최고기온, 평균습도, 강수량을 붙이기</li></ol><ol type="a" id="231ef235-8248-80d1-8fe5-c52812efe384" class="numbered-list" start="4"><li>주차를 기준으로 weekly_factor의 휴일 플래그, 명절지수, 작기정보 붙이기</li></ol><ol type="a" id="231ef235-8248-8022-a7c8-cb73a5686a9a" class="numbered-list" start="5"><li>weekly_trade  기준 - [주차, 품목, 품종, 등급, 거래량, 평균 단가 계산, 기후 데이터,  휴일플래그, 명절지수, 작기정보] <ul id="231ef235-8248-8064-aa89-c5ad0098b3e2" class="bulleted-list"><li style="list-style-type:disc">단 기간이 길고 테이블이 무거워 품목별로 테이블을 만들어야 할지</li></ul></li></ol></li></ol><ol type="1" id="231ef235-8248-809e-85ef-eba272b0ddbc" class="numbered-list" start="6"><li>predict_result 테이블 생성/업데이트 (주간 단위/매주 월요일)<ol type="a" id="231ef235-8248-80f9-b070-fb44d6161178" class="numbered-list" start="1"><li>예측모델에 base_data를 입력하여 품목, 품종, 등급별 t+1(다음주), t+2(2주 뒤), t+3(3주 뒤), t+4(4주뒤) 예측가격 도출</li></ol><ol type="a" id="231ef235-8248-8006-9eba-f972dd255051" class="numbered-list" start="2"><li>예측 가격 범주화<ol type="i" id="231ef235-8248-8069-aa15-d7bf06c9f46d" class="numbered-list" start="1"><li>1안 -  각 예측가격의 표준편차를 이용한 구간화 min_t+1, max_t+1, min_t+2, max_t+2…  값을 도출</li></ol><ol type="i" id="231ef235-8248-80b8-b43a-c9083cd91648" class="numbered-list" start="2"><li>2안 - 고, 중, 저 등급의 예측가격을 확용하여 고~저 등급을 구간화  min_t+1, max_t+1, min_t+2, max_t+2…  값을 도출</li></ol></li></ol><ol type="a" id="231ef235-8248-80ca-91eb-ed7ade2390de" class="numbered-list" start="3"><li>predict_result 테이블에  저장</li></ol></li></ol><ol type="1" id="231ef235-8248-808e-ae99-e1e9b17157e0" class="numbered-list" start="7"><li>graph_daily, graph_weekly 테이블 생성/업데이트 (일간/주간)<ol type="a" id="231ef235-8248-8052-b16a-c9f51547fd7a" class="numbered-list" start="1"><li>graph_daily - 일자, 품목코드, 품종코드, 등급코드, 총거래량, 평균단가</li></ol><ol type="a" id="231ef235-8248-80e3-a0ef-e7a15d7e78c8" class="numbered-list" start="2"><li>graph_weekly - 주차, 품목코드, 품종코드, 등급코드, 총거래량, 평균단가</li></ol></li></ol><ol type="1" id="231ef235-8248-80de-8826-c292bf0b0997" class="numbered-list" start="8"><li>Flask 서버에서 데이터 호출 → <ol type="a" id="231ef235-8248-8073-9c6c-e9b32238e053" class="numbered-list" start="1"><li>그래프용 데이터 - &gt; graph_daily, graph_weekly 테이블 조회 → 출력</li></ol><ol type="a" id="231ef235-8248-8014-9972-c15c28f43c4d" class="numbered-list" start="2"><li>예측 데이터 → predict_result  조회 → 출력</li></ol></li></ol><p id="231ef235-8248-8029-8626-c4fc2e51b4bb" class="">
+</p><p id="231ef235-8248-80dd-85ea-cf20f614e12d" class="">Q&amp;A</p><ol type="1" id="231ef235-8248-80f2-b5e8-f1648678c3de" class="numbered-list" start="1"><li>무슨 프로그램을 사용하는 것이 효율적인가?</li></ol><ol type="1" id="231ef235-8248-8036-a351-e6b5f455da3d" class="numbered-list" start="2"><li>예측 모델은 어디에 위치해있는가?</li></ol><ol type="1" id="231ef235-8248-808a-903d-f745b44e15ea" class="numbered-list" start="3"><li>데이터가 준비되고 예측모델을 돌리는 트리거는 어떻게 설정하는가?</li></ol><p id="231ef235-8248-80a6-9080-f40ba3b9f308" class="">
+</p><p id="231ef235-8248-8063-a6de-ce668aaa213c" class="">
+</p><p id="231ef235-8248-806b-956b-c336fe5e78c0" class="">
+</p><p id="231ef235-8248-80dd-a531-ebfef3ab3489" class="">
+</p><p id="231ef235-8248-80b6-8aed-d664faae662b" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

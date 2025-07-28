@@ -1,0 +1,16 @@
+crop_id,display_name,sort_order,is_active
+1201,양파,1,TRUE
+1001,배추,2,TRUE
+1005,상추,3,TRUE
+1101,무,4,TRUE
+901,오이,5,TRUE
+1004,양배추,6,TRUE
+601,사과,7,TRUE
+602,배,8,TRUE
+1202,대파,9,TRUE
+1209,마늘,10,TRUE
+804,딸기,11,TRUE
+806,방울토마토,12,TRUE
+501,감자,13,TRUE
+502,고구마,14,TRUE
+9999,기타,99,TRUE
